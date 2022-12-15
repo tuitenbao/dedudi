@@ -2,5 +2,4 @@ name: khkt
 dependencies:
   - numpy
   - pandas
-  - streamlit
   - tensorflow
