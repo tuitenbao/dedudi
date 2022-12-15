@@ -1,0 +1,7 @@
+name: khkt
+dependencies:
+  - numpy
+  - pandas
+  - streamlit
+  - keras.models
+  - tensorflow
