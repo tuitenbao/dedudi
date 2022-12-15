@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
 import ast
-from keras.models import load_model
-from PIL import Image, ImageOps
 import numpy as np
-import glob
 
 add_selectbox = st.selectbox(
     "Chọn phương pháp chẩn đoán",
@@ -150,36 +147,3 @@ if add_selectbox == 'Thủ công':
          if (len(set(options_all) & set(ast.literal_eval(case))) / len(ast.literal_eval(case))*100) == max:
                st.write('Kết quả: ',df.cases_of_diseases[index])
                st.write('Tỉ lệ dự đoán: ',round(max,2),'%')
-if add_selectbox == 'Hình ảnh':
-   np.set_printoptions(suppress=True)
-
-   model = load_model('keras_model.h5', compile=False)
-
-   class_names = open('labels.txt', 'r', encoding='utf-8').readlines()
-
-   data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-
-   uploaded_file = st.file_uploader("Hãy đăng ảnh của bệnh")
-   if uploaded_file is not None:
-      bytes_data = uploaded_file.read()
-      image_2 = Image.open(uploaded_file)
-      st.image(uploaded_file)
-
-      image = Image.open(uploaded_file).convert('RGB')
-
-      size = (224, 224)
-      image = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
-
-      image_array = np.asarray(image)
-
-      normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
-
-      data[0] = normalized_image_array
-
-      prediction = model.predict(data)
-      index = np.argmax(prediction)
-      class_name = class_names[index]
-      confidence_score = prediction[0][index]
-
-      st.write('Class:', class_name, end='')
-      st.write('Confidence score:', round(confidence_score*100,2),'%')
