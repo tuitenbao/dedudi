@@ -136,7 +136,7 @@ if add_selectbox == 'Thủ công':
       if j_6: options_hoa = options_hoa + ['Trên hoa xuất hiện vết thối màu nâu xám']
 
    if st.button('Chẩn đoán'):
-      df = pd.read_excel('F:\khkthpsl.xlsx')
+      df = pd.read_excel('khkthpsl.xlsx')
       options_all = options_la + options_re + options_hoa \
          + options_canh + options_than + options_trai
       max = 0
