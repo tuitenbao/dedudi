@@ -1,0 +1,5 @@
+0 Bệnh rầy nhảy
+1 Bệnh sâu đục trái
+2 Bệnh sâu ăn bông
+3 Bệnh sâu đục thân
+4 Bệnh rệp sáp
