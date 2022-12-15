@@ -1,6 +1,5 @@
 name: khkt
 dependencies:
-  - streamlib
   - streamlit
   - numpy
   - pandas
