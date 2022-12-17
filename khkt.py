@@ -181,5 +181,5 @@ if add_selectbox == 'Hình ảnh':
       class_name = class_names[index]
       confidence_score = prediction[0][index]
 
-      st.write('Class:', class_name, end='')
+      st.write(class_name)
       st.write('Confidence score:', round(confidence_score*100,2),'%')
