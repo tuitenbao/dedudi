@@ -159,7 +159,7 @@ if add_selectbox == 'Hình ảnh':
 
    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-   uploaded_file = st.file_uploader("Hãy đăng ảnh của bệnh")
+   uploaded_file = st.file_uploader("Hãy đăng ảnh biểu hiện")
    if uploaded_file is not None:
       bytes_data = uploaded_file.read()
       image_2 = Image.open(uploaded_file)
