@@ -181,5 +181,5 @@ if add_selectbox == 'Hình ảnh':
       class_name = class_names[index]
       confidence_score = prediction[0][index]
 
-      st.write('Bệnh rầy nhảy')
-      st.write('Confidence score:', round(confidence_score*100,2),'%')
+      st.write('Kết quả: bệnh rầy nhảy')
+      st.write('Tỉ lệ dự đoán:', round(confidence_score*100,2),'%')
