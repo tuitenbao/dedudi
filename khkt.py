@@ -6,6 +6,8 @@ from PIL import Image, ImageOps
 import numpy as np
 import glob
 
+st.title('CHẨN ĐOÁN SÂU BỆNH SẦU RIÊNG')
+
 add_selectbox = st.selectbox(
     "Chọn phương pháp chẩn đoán",
     ("Thủ công","Hình ảnh")
@@ -110,10 +112,10 @@ if add_selectbox == 'Thủ công':
 
    with tab5:
       col13, col14 = st.columns(2)
-      col13.image("https://admin.hlc.net.vn/uploaded/Images/Original/2020/11/24/rep_sap_hai_sau_2411151001.jpg", width=230, use_column_width=550)
+      col13.image("https://admin.hlc.net.vn/uploaded/Images/Original/2020/11/24/rep_sap_hai_sau_2411151001.jpg")
       b_5 = col13.checkbox('Rễ thối, xì mủ')
       if b_5: options_re = options_re + ['Rễ thối, xì mủ']
-      col14.image("https://agriplusvn.com/wp-content/uploads/2020/04/IMG_20190219_060017-768x1024-min.jpg", width=230, use_column_width=550)
+      col14.image("https://agriplusvn.com/wp-content/uploads/2020/04/IMG_20190219_060017-768x1024-min.jpg")
       c_5 = col14.checkbox('Thối rễ')
       if c_5: options_re = options_re + ['Thối rễ']
 
@@ -153,13 +155,13 @@ if add_selectbox == 'Thủ công':
 if add_selectbox == 'Hình ảnh':
    np.set_printoptions(suppress=True)
 
-   model = load_model('keras_model.h5', compile=False)
+   model = load_model('keras_Model.h5', compile=False)
 
    class_names = open('labels.txt', 'r', encoding='utf-8').readlines()
 
    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-   uploaded_file = st.file_uploader("Hãy đăng ảnh biểu hiện")
+   uploaded_file = st.file_uploader("Hãy đăng ảnh của bệnh")
    if uploaded_file is not None:
       bytes_data = uploaded_file.read()
       image_2 = Image.open(uploaded_file)
@@ -180,6 +182,5 @@ if add_selectbox == 'Hình ảnh':
       index = np.argmax(prediction)
       class_name = class_names[index]
       confidence_score = prediction[0][index]
-
-      st.write('Kết quả: bệnh rầy nhảy')
-      st.write('Tỉ lệ dự đoán:', round(confidence_score*100,2),'%')
+      st.write('Kết quả: ',class_name, end='')
+      st.write('Tỉ lệ dự đoán: ', round(confidence_score*100,2),'%')
